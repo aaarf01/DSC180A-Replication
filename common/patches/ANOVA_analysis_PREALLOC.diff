@@ -1,0 +1,11 @@
+--- authors_code/ANOVA_analysis.m	2026-11-04 01:15:53.518317499 -0800
++++ patched_code/ANOVA_analysis_PREALLOC.m	2026-11-04 14:02:43.453592064 -0800
+@@ -15,7 +15,7 @@
+ 
+ N = size(data3,2);
+ SSQ = zeros(N,4);
+-Coefs = zeros(N,24);
++Coefs = zeros(N,1+numel(unique(time_vec(:,1)))+numel(unique(time_vec(:,2))));
+ %i=1;
+ for i = 1:N
+ 

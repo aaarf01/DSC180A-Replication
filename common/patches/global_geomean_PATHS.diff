@@ -1,0 +1,20 @@
+--- authors_code/global_geomean_figure_v5.m	2026-11-04 01:15:53.519172299 -0800
++++ patched_code/global_geomean_figure_v5_PATHS.m	2026-11-04 14:02:43.453915179 -0800
+@@ -2,12 +2,12 @@
+ 
+ clear
+ close all
+-addpath(genpath('/Users/amartiny/Library/CloudStorage/GoogleDrive-amartiny@uci.edu/My Drive/NASA_NutStress/cdt'))
+-addpath(genpath('/Users/amartiny/Library/CloudStorage/GoogleDrive-amartiny@uci.edu/My Drive/colorbrewer'))
++addpath(genpath('cdt'))
++addpath(genpath('colorbrewer'))
+ 
+-load '/Users/amartiny/Library/CloudStorage/GoogleDrive-amartiny@uci.edu/My Drive/NASA_NutStress/data_processed/DataLL_theta.mat'
+-load '/Users/amartiny/Library/CloudStorage/GoogleDrive-amartiny@uci.edu/My Drive/NASA_NutStress/data_processed/LAT2.mat'
+-load '/Users/amartiny/Library/CloudStorage/GoogleDrive-amartiny@uci.edu/My Drive/NASA_NutStress/data_processed/LON3.mat'
++load 'DataLL_theta.mat'
++load 'LAT2.mat'
++load 'LON3.mat'
+ 
+ 
+ data = DATAlowLat3;

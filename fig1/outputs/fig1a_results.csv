@@ -1,0 +1,7 @@
+version,subset,n,R,P
+V1 geometric mean,"all cells",20790,-0.659686922413291,0
+V1 geometric mean,"within plot axes (Z<=250, theta'<=4)",20394,-0.661943720249104,0
+V2 arithmetic mean,"all cells",20790,-0.64367964741482,0
+V2 arithmetic mean,"within plot axes (Z<=250, theta'<=4)",20394,-0.644338568008965,0
+V3 all 8-day values,"all values",18648630,-0.513026718047076,0
+V3 all 8-day values,"within plot axes (Z<=250, theta'<=4)",18293418,-0.510591423028603,0

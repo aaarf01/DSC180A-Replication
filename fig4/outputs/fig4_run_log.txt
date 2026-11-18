@@ -1,0 +1,129 @@
+=== Fig. 4 reproduction ===
+Run started: 2026-11-18 02:27:59
+MATLAB 24.1.0.2537033 (R2024a)
+  Statistics and Machine Learning Toolbox 24.1
+  Curve Fitting Toolbox 24.1
+  Signal Processing Toolbox: not installed
+CDT: CDT commit fd7d7a55c0bcc20b17c9900a131628c4f34d5c8b (github.com/chadagreene/CDT, 2026-05-04)
+BrewerMap: BrewerMap commit b373eabfeeda1296d9d39e0fe251a6464d4fae3e (github.com/DrosteEffect/BrewerMap, 2026-03-30)
+
+--- Checking authors' scripts against the v1.0.2 md5 list ---
+All 14 scripts match.
+
+=== Step P: theta' preprocessing (shared by every figure) ===
+Theta' grid [180 360 897]; first 2002/185; last 2022/001
+DEVIATION: BathyLL.mat is not released; all-true mask used (paper's ANOVA n = 20,822 vs ~22,468 here).
+prepare_time_files.m (unchanged) done; ddd2mmdd stand-in from shims/.
+  saved /Users/moka2804/Desktop/DSC180A/nutrient-stress-replication/fig4/outputs/stepP_preprocess_fig1.png
+  saved /Users/moka2804/Desktop/DSC180A/nutrient-stress-replication/fig4/outputs/stepP_preprocess_fig2.png
+preprocess_..._bathy (path-only patch) done; DataLL_theta.mat saved in original -180..180 order.
+Dryad land cells empty in DataLL_theta.mat: 1.0000 as stored, 0.2132 if reordered
+Order confirmed. Cells with data: 22468 (earlier runs: 22468)
+Step P done (35 s)
+NOTE: the released preprocessing reorders longitude before saving, and longterm_SST_theta_overlay.m
+      reorders again; run back to back they rotate maps by 200 degrees. prep_theta saves the data in
+      the original order so the trend maps land on the right geography. Trends themselves are unaffected.
+
+=== Step 1: SST preprocessing (OURS: no authors' script) ===
+Reading /Users/moka2804/Desktop/DSC180A/nutrient-stress-replication/data/SST_v2_25-04.csv (large file, may take a few minutes)...
+CSV size [64802 899] (expect 64802 x 899)
+SST time axis matches theta' exactly (897 steps).
+
+-- A. Coordinate columns (col 1 should be latitude, col 2 longitude) --
+  lat-fastest  col1 matches 1.0000 | col2 matches 0.0028
+  lon-fastest  col1 matches 0.0056 | col2 matches 1.0000
+  col1 distinct values 180 (range -89.5 to 89.5); col2 distinct values 360 (range -179.5 to 179.5)
+  col1 first repeats after 180 rows
+  col2 first repeats after 360 rows
+  FINDING: no layout makes BOTH columns correct row by row, so the coordinate
+  columns cannot serve as row labels on their own. Deciding with the data checks below.
+
+-- B. Data checks per candidate layout --
+  lat-fastest            land agree: global 0.8941, 40S-40N 0.9612 | equator 28.1 C, 60-70N 7.0 C | W Pacific - E Pacific 4.9 C | physical checks true
+  lat-fastest, flipped   land agree: global 0.5754, 40S-40N 0.6859 | equator 28.1 C, 60-70N 0.7 C | W Pacific - E Pacific 4.9 C | physical checks true
+  lon-fastest            land agree: global 0.5086, 40S-40N 0.5797 | equator 12.7 C, 60-70N 14.7 C | W Pacific - E Pacific -28.1 C | physical checks false
+  lon-fastest, flipped   land agree: global 0.5327, 40S-40N 0.5905 | equator 12.7 C, 60-70N 16.2 C | W Pacific - E Pacific -28.1 C | physical checks false
+Using layout: lat-fastest (40S-40N land agreement 0.9612; next best 0.6859)
+NOTE: global agreement is lower than in the 40S-40N band because theta' is also missing over
+      sea ice and polar night, where SST is not; only 40S-40N enters Fig. 4.
+ASSUMPTION: SST gets the same >25%-missing rule, inpainting and 5-point lowess as theta', without clipping.
+SST cells kept: 23143
+Step 1 done (17 s)
+
+=== Step 2: longterm_SST_theta_overlay.m (unchanged) -> Fig. 4A, 4B ===
+
+R =
+
+   -0.1909
+
+
+P =
+
+  2.3556e-183
+
+
+R1N =
+
+    0.2479
+
+
+R1S =
+
+    0.5603
+
+
+R1NA =
+
+    0.2478
+
+
+R2NA =
+
+    0.7522
+
+
+R1SA =
+
+    0.5527
+
+
+R2SA =
+
+    0.4473
+
+
+R_theta =
+
+    0.4310
+
+
+R_sst =
+
+    0.8872
+
+  saved /Users/moka2804/Desktop/DSC180A/nutrient-stress-replication/fig4/outputs/step2_fig4AB_fig1.png
+  saved /Users/moka2804/Desktop/DSC180A/nutrient-stress-replication/fig4/outputs/step2_fig4AB_fig2.png
+Step 2 done (5 s)
+Fig. 4B theta' trend map: Dryad land cells empty 1.0000 (0.2127 if shifted 200 deg); landmarks correct 10/10
+
+=== Step 3: Fig. 4C histograms (OURS) ===
+NOTE: T_sst is taken after the authors' line T_sst(isnan(T)) = NaN, so both histograms use the same cells.
+                    <strong>quantity</strong>                    <strong>reproduced</strong>                   <strong>published</strong>                     <strong>script_variable</strong>  
+    <strong>________________________________________</strong>    <strong>__________</strong>    <strong>________________________________________</strong>    <strong>__________________</strong>
+
+    {'Median theta' trend (yr^-1)'         }    -0.0012254    {'-1.3e-3'                             }    {'Median_theta'  }
+    {'Median SST trend (degC yr^-1)'       }      0.023411    {'2.3e-2'                              }    {'Median_SST'    }
+    {'Area fraction with SST increase'     }        0.8872    {'0.89'                                }    {'R_sst'         }
+    {'Average SST rise over record (degC)' }       0.43122    {'0.43'                                }    {'SST.period'    }
+    {'Area fraction with theta' increase'  }       0.43102    {'not stated'                          }    {'R_theta'       }
+    {'Pearson R, theta' trend vs SST trend'}      -0.19088    {'not stated'                          }    {'R'             }
+    {'Grid cells with a theta' trend'      }         22468    {'22468 (code comment) / 20822 (paper)'}    {'nnz(~isnan(T))'}
+    {'Fig. 4B land cells correctly empty'  }             1    {'1 expected'                          }    {'check'         }
+
+
+=== Step 4: Fig. 4D ===
+SKIPPED: data/Dataset S1_WOD.csv not found. Fig. 4D needs this nutricline table, which was not
+released with the paper (see fig4/README.md).
+
+Saved fig4_summary.csv and fig4_results.mat in fig4/outputs/
+Total run time 1.0 min

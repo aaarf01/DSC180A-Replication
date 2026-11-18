@@ -1,0 +1,14 @@
+--- authors_code/preprocess_LowLat_thetaPrime_v3_bathy.m	2026-11-04 01:15:53.519450569 -0800
++++ patched_code/preprocess_LowLat_thetaPrime_v3_bathy_PATHS.m	2026-11-04 02:18:25.578310940 -0800
+@@ -1,8 +1,8 @@
+ clear
+ close all
+-addpath(genpath('/Users/amartiny/Library/CloudStorage/GoogleDrive-amartiny@uci.edu/My Drive/NASA_NutStress/Inpaint_nans'))
+-load '/Users/amartiny/Library/CloudStorage/GoogleDrive-amartiny@uci.edu/My Drive/NASA_NutStress/data_processed/raw_data/thetaPrime_Dec24.mat';
+-load '/Users/amartiny/Library/CloudStorage/GoogleDrive-amartiny@uci.edu/My Drive/NASA_NutStress/data_processed'/BathyLL.mat
++addpath(genpath('Inpaint_nans'))
++load 'thetaPrime_Dec24.mat';
++load 'BathyLL.mat'
+ DATA = double(thetaprime2);
+ DATA = [DATA(:,201:360,:) DATA(:,1:200,:)];
+ 

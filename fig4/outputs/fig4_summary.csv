@@ -1,0 +1,9 @@
+quantity,reproduced,published,script_variable
+"Median theta' trend (yr^-1)",-0.00122541853222135,-1.3e-3,Median_theta
+"Median SST trend (degC yr^-1)",0.0234113588096567,2.3e-2,Median_SST
+"Area fraction with SST increase",0.887202239227186,0.89,R_sst
+"Average SST rise over record (degC)",0.431217113500128,0.43,SST.period
+"Area fraction with theta' increase",0.431021285288515,not stated,R_theta
+"Pearson R, theta' trend vs SST trend",-0.190883813045535,not stated,R
+"Grid cells with a theta' trend",22468,22468 (code comment) / 20822 (paper),nnz(~isnan(T))
+"Fig. 4B land cells correctly empty",1,1 expected,check

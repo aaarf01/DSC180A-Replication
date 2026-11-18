@@ -1,0 +1,137 @@
+=== Fig. 2 reproduction ===
+Run started: 2026-11-18 02:25:20
+MATLAB 24.1.0.2537033 (R2024a)
+  Statistics and Machine Learning Toolbox 24.1
+  Curve Fitting Toolbox 24.1
+  Signal Processing Toolbox: not installed
+CDT: CDT commit fd7d7a55c0bcc20b17c9900a131628c4f34d5c8b (github.com/chadagreene/CDT, 2026-05-04)
+BrewerMap: BrewerMap commit b373eabfeeda1296d9d39e0fe251a6464d4fae3e (github.com/DrosteEffect/BrewerMap, 2026-03-30)
+
+--- Checking authors' scripts against the v1.0.2 md5 list ---
+All 14 scripts match.
+
+=== Step P: theta' preprocessing (shared by every figure) ===
+Theta' grid [180 360 897]; first 2002/185; last 2022/001
+DEVIATION: BathyLL.mat is not released; all-true mask used (paper's ANOVA n = 20,822 vs ~22,468 here).
+prepare_time_files.m (unchanged) done; ddd2mmdd stand-in from shims/.
+  saved /Users/moka2804/Desktop/DSC180A/nutrient-stress-replication/fig2/outputs/stepP_preprocess_fig1.png
+  saved /Users/moka2804/Desktop/DSC180A/nutrient-stress-replication/fig2/outputs/stepP_preprocess_fig2.png
+preprocess_..._bathy (path-only patch) done; DataLL_theta.mat saved in original -180..180 order.
+Dryad land cells empty in DataLL_theta.mat: 1.0000 as stored, 0.2132 if reordered
+Order confirmed. Cells with data: 22468 (earlier runs: 22468)
+Step P done (35 s)
+Time axis: 2002-07-04 to 2022-01-01; year values [2002 2003 2004 2005 2006 2007 2008 2009 2010 2011 2012 2013 2014 2015 2016 2017 2018 2019 2020 2021 2022]
+
+=== Step 1: global_geomean_figure_v5 (path-only patch) -> Fig. 2A ===
+Changes vs authors' file: 5 path lines only (common/patches/global_geomean_PATHS.diff).
+DEVIATION: LAT2.mat and LON3.mat are not released; rebuilt as LAT(50:131) and LON2 = 20.5:379.5
+           (the longitude vector every other script uses, consistent with this script's tick labels).
+DEVIATION: Fig. 2A runs on a copy of the data in the preprocessing script's own output order,
+           because this script, unlike the ANOVA and trend scripts, does not reorder longitude.
+  saved /Users/moka2804/Desktop/DSC180A/nutrient-stress-replication/fig2/outputs/step1_fig2A_fig1.png
+Geometric-mean theta': 22468 cells; median 1.672; 5th-95th percentile 0.578-3.460; cells equal to 0: 4
+Step 1 done (5 s)
+
+=== Step 2: ANOVA_analysis (one-line preallocation fix) ===
+Change vs authors' file: Coefs = zeros(N,24) sized from the data instead
+  (common/patches/ANOVA_analysis_PREALLOC.diff). With 24 columns the released script stops at
+  the first cell, because anovan returns 1 + years + 12 coefficients.
+Running anovan for every grid cell; this takes several minutes...
+ANOVA grid cells: 22468 (paper: 20,822)
+Coefficients per cell: 34 = 1 constant + 21 year levels + 12 month levels (paper: 20 year levels)
+Step 2 done (1.8 min)
+
+=== Step 3: ANOVA_monthly (unchanged) -> monthly anomalies (fig. S7) ===
+  saved /Users/moka2804/Desktop/DSC180A/nutrient-stress-replication/fig2/outputs/step3_monthly_S7_fig1.png
+Season array [82 360 12] (lat x lon x month), display longitudes 20.5 to 379.5
+Step 3 done (3 s)
+
+=== Step 4: ANOVA_variance (unchanged) -> seasonal vs yearly variance ===
+inferno_cmap.mat is not released; supplied from matplotlib's inferno (colours only).
+
+Mf_season =
+
+    0.5279
+
+
+Mf_annual =
+
+    0.0632
+
+  saved /Users/moka2804/Desktop/DSC180A/nutrient-stress-replication/fig2/outputs/step4_variance_fig1.png
+Median seasonal share of variance: 0.528 (paper: 59%)
+Median yearly share of variance:   0.063 (paper: not stated)
+Step 4 done (3 s)
+
+=== Step 5: coordinate checks (OURS) ===
+Display longitudes equal the reordered Dryad longitudes: true
+Display latitudes run 40.5 to -40.5 (north at top): true
+Fig. 2A geometric mean: Dryad land cells empty 1.0000 (0.2127 if shifted 200 deg); landmarks correct 10/10
+Fig. 2C January anomaly: Dryad land cells empty 1.0000 (0.2127 if shifted 200 deg); landmarks correct 10/10
+Seasonal variance share: Dryad land cells empty 1.0000 (0.2127 if shifted 200 deg); landmarks correct 10/10
+
+=== Step 6: Fig. 2C-F four-panel figure (OURS) ===
+NOTE: the authors' ANOVA_monthly.m uses a +/-2 colour scale; the published panels use +/-1.5.
+      The four-panel figure uses +/-1.5 to match the paper. The data are identical.
+  January  anomaly: median -0.057, 1st-99th pct -1.12 to +1.31, beyond +/-1.5: 0.1%
+  April    anomaly: median -0.068, 1st-99th pct -0.95 to +0.76, beyond +/-1.5: 0.0%
+  July     anomaly: median +0.253, 1st-99th pct -1.18 to +1.19, beyond +/-1.5: 0.1%
+  October  anomaly: median -0.112, 1st-99th pct -0.93 to +0.68, beyond +/-1.5: 0.1%
+
+=== Step 7: monthly assignment and anomaly-baseline checks (OURS) ===
+-- 7a. How 8-day composites are assigned to months --
+Each composite is one observation, labelled with the month of its START date
+(prepare_time_files.m converts year + start day to month). Nothing is averaged to months first.
+Composites per month (Jan..Dec): [77 76 76 62 71 76 80 79 80 65 75 80]
+Composites spanning two calendar months: 180 of 897 (20.1%)
+Composites whose midpoint falls in a different month than their start: 78 (8.7%)
+Year levels: [2002 2003 2004 2005 2006 2007 2008 2009 2010 2011 2012 2013 2014 2015 2016 2017 2018 2019 2020 2021 2022]; observations in 2022: 1
+
+-- 7b. Independent re-computation of the anovan coefficients --
+Least squares with sum-to-zero (effect) coding vs anovan output:
+  max |difference|: constant 2.26e-14, year effects 5.41e-14, month effects 4.11e-14
+  max |sum of the 12 month effects| per cell: 2.66e-15 (zero means the baseline is the
+  unweighted average over months, after removing year effects)
+
+-- 7c. Baseline: ANOVA month effect vs a simple monthly climatology anomaly --
+Simple climatology (month mean - mean of 12 months) vs authors' anovan month effects:
+  all months: max |diff| 0.053, RMS diff 0.0065, cells x months with |diff| > 0.1: 0.00%
+  spatial pattern correlation (Fig. 2C-F months): Jan 0.9999  Apr 0.9997  Jul 0.9999  Oct 0.9998  
+
+-- 7d. Sensitivity: month taken from the composite midpoint --
+Midpoint-month ANOVA vs authors' anovan month effects:
+  all months: max |diff| 0.379, RMS diff 0.0432, cells x months with |diff| > 0.1: 4.76%
+  spatial pattern correlation (Fig. 2C-F months): Jan 0.9997  Apr 0.9833  Jul 0.9997  Oct 0.9718  
+
+-- 7e. Sensitivity: 2022/001 composite counted as 2021 (20 year levels, as in the paper) --
+20-year-level ANOVA vs authors' anovan month effects:
+  all months: max |diff| 0.031, RMS diff 0.0019, cells x months with |diff| > 0.1: 0.00%
+  spatial pattern correlation (Fig. 2C-F months): Jan 0.9999  Apr 1.0000  Jul 1.0000  Oct 1.0000  
+
+=== Step 8: Fig. 2B nutricline depth from WOA23 (OURS) ===
+Nitrate units: micromoles_per_kilogram. Threshold 3 (3 umol/L = ~2.93 umol/kg, negligible).
+Depth levels: 102 (0 to 5500 m). Profiles 41088; surface >= 3 (set to 0 m): 16663; never reach 3 (blank): 667
+CHOICES (paper silent): annual climatology (n00), all decades, n_an; linear interpolation between
+  standard depths; surface >= 3 -> 0 m; never reaching 3 -> blank; masked to cells with theta' data.
+Theta' cells: 22468; with a nutricline value: 20790
+Nutricline: median 101 m; 5th-95th pct 0-222 m; at 0 m 10.5%; <30 m 14.9%; >250 m 1.9%
+Fig. 2B nutricline: Dryad land cells empty 1.0000 (0.2638 if shifted 200 deg); landmarks correct 10/10
+
+=== Summary ===
+                      <strong>quantity</strong>                      <strong>reproduced</strong>           <strong>published_or_expected</strong>        
+    <strong>____________________________________________</strong>    <strong>__________</strong>    <strong>____________________________________</strong>
+
+    {'Median seasonal share of variance'       }       0.52787    {'0.59'                            }
+    {'Median yearly share of variance'         }      0.063227    {'not stated'                      }
+    {'ANOVA grid cells'                        }         22468    {'20822'                           }
+    {'Year levels in ANOVA'                    }            21    {'20'                              }
+    {'Month levels in ANOVA'                   }            12    {'12'                              }
+    {'Fig. 2A median geometric-mean theta''    }         1.672    {'not stated (colour scale 0-4)'   }
+    {'Fig. 2A land cells correctly empty'      }             1    {'1 expected'                      }
+    {'Fig. 2C land cells correctly empty'      }             1    {'1 expected'                      }
+    {'Max |anovan - independent least squares|'}    4.1078e-14    {'0 expected'                      }
+    {'Fig. 2B median nutricline (m)'           }        101.01    {'not stated (colour scale 30-250)'}
+    {'Fig. 2B cells with a value'              }         20790    {'not stated'                      }
+
+Saved fig2_summary.csv and fig2_results.mat in outputs/
+Total run time 2.7 min

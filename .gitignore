@@ -1,0 +1,20 @@
+# Large input data (download or copy with setup_data; see data/README.md)
+data/thetaPrime_MODIS.mat
+data/SST_v2_25-04.csv
+data/woa23_all_n00_01.nc
+data/oni.ascii.txt
+data/ersst.v5.pdo.dat
+data/Dataset S1_WOD.csv
+# inpaint_nans is added by setup_data (File Exchange); remove this line once its licence is checked for redistribution
+deps/inpaint_nans/
+# Temporary files written during runs
+fig*/work/
+results_*.zip
+run_all_summary.txt
+*.asv
+.DS_Store
+__pycache__/
+results_summary.csv
+# Large MATLAB outputs (logs, tables and images in fig*/outputs/ are kept)
+fig*/outputs/*.fig
+fig*/outputs/*.mat

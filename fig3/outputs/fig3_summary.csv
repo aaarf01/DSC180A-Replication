@@ -1,0 +1,14 @@
+quantity,reproduced,published_or_expected
+"|R| PC5 vs ONI (30-pt smoothing, code)",0.836902883231498,0.81
+"P PC5 vs ONI",1.78365101037337e-236,< 1e-216
+"|R| PC6 vs PDO (30-pt smoothing, code)",0.609427618580018,0.59
+"P PC6 vs PDO",2.58272281479862e-92,< 1e-85
+"|R| PC5 vs ONI (20-pt, paper text)",0.824014494339472,0.81
+"|R| PC6 vs PDO (20-pt, paper text)",0.571803816353494,0.59
+"Mode most correlated with ONI",5,5
+"Mode most correlated with PDO",6,6
+"Variance explained PC5 (%)",1.42035290358352,not stated
+"Variance explained PC6 (%)",0.985262201656048,not stated
+"Year levels in ANOVA",20,20
+"ANOVA cells",22468,20822
+"Fig. 3B land cells correctly empty",1,1 expected

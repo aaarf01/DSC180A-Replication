@@ -1,0 +1,272 @@
+=== Fig. 3 reproduction ===
+Run started: 2026-11-18 03:18:41
+MATLAB 24.1.0.2537033 (R2024a)
+  Statistics and Machine Learning Toolbox 24.1
+  Curve Fitting Toolbox 24.1
+  Signal Processing Toolbox: not installed
+CDT: CDT commit fd7d7a55c0bcc20b17c9900a131628c4f34d5c8b (github.com/chadagreene/CDT, 2026-05-04)
+BrewerMap: BrewerMap commit b373eabfeeda1296d9d39e0fe251a6464d4fae3e (github.com/DrosteEffect/BrewerMap, 2026-03-30)
+
+--- Checking authors' scripts against the v1.0.2 md5 list ---
+All 14 scripts match.
+DEVIATION: Signal Processing Toolbox not available; CDT's plotpsd replaced by an FFT
+           periodogram stand-in (common/shims/plotpsd_standin). Affects only the spectrum panels.
+ONI file: /Users/moka2804/Desktop/DSC180A/nutrient-stress-replication/data/oni.ascii.txt
+PDO file: /Users/moka2804/Desktop/DSC180A/nutrient-stress-replication/data/ersst.v5.pdo.dat
+
+=== Step P: theta' preprocessing (shared by every figure) ===
+Theta' grid [180 360 897]; first 2002/185; last 2022/001
+DEVIATION: BathyLL.mat is not released; all-true mask used (paper's ANOVA n = 20,822 vs ~22,468 here).
+prepare_time_files.m (unchanged) done; ddd2mmdd stand-in from shims/.
+  saved /Users/moka2804/Desktop/DSC180A/nutrient-stress-replication/fig3/outputs/stepP_preprocess_fig1.png
+  saved /Users/moka2804/Desktop/DSC180A/nutrient-stress-replication/fig3/outputs/stepP_preprocess_fig2.png
+preprocess_..._bathy (path-only patch) done; DataLL_theta.mat saved in original -180..180 order.
+Dryad land cells empty in DataLL_theta.mat: 1.0000 as stored, 0.2132 if reordered
+Order confirmed. Cells with data: 22468 (earlier runs: 22468)
+Step P done (36 s)
+
+=== Step Y: year levels for the ANOVA ===
+DEVIATION: the 1 composite(s) dated 2022 (1 Jan 2022) counted as year 2021 in time_vec,
+           giving 20 year levels as in the paper. ANOVA_yearly.m fails with 21 levels (it labels
+           panels 2002:2021). timenum and time are unchanged, so EOF and index steps are unaffected.
+           In the Fig. 2 analysis this changed monthly anomalies by at most 0.031.
+
+=== Step 1: ANOVA_analysis (one-line preallocation fix) ===
+ANOVA cells: 22468; coefficients per cell: 33 (expected 33 = 1 + 20 years + 12 months)
+Step 1 done (1.8 min)
+
+=== Step 2: ANOVA_yearly (unchanged) -> yearly anomaly maps ===
+  saved /Users/moka2804/Desktop/DSC180A/nutrient-stress-replication/fig3/outputs/step2_yearly_S14_fig1.png
+Annual [82 360 20] (lat x lon x year, 2002..2021)
+Step 2 done (8 s)
+
+=== Step 3: EOF_variance (unchanged) ===
+
+Sexpv8 =
+
+    4.1476
+
+
+Sexpv4 =
+
+   58.4610
+
+
+Sexpv1_8 =
+
+   62.6086
+
+
+ans = 
+
+  <a href="matlab:helpPopup('matlab.graphics.chart.primitive.Line')" style="font-weight:bold">Line</a> with properties:
+
+              Color: [0 0.4470 0.7410]
+          LineStyle: '-'
+          LineWidth: 0.5000
+             Marker: 'none'
+         MarkerSize: 6
+    MarkerFaceColor: 'none'
+              XData: [0 0.0439 0.0879 0.1318 0.1758 0.2197 0.2637 0.3076 … ] (1×513 double)
+              YData: [2.4166e-29 8.0351 34.5041 6.8544 11.2432 36.4294 … ] (1×513 double)
+
+  Show <a href="matlab:if exist('ans', 'var'), matlab.graphics.internal.getForDisplay('ans', ans, 'matlab.graphics.chart.primitive.Line'), else, matlab.graphics.internal.getForDisplay('ans'), end">all properties</a>
+
+
+ans = 
+
+  <a href="matlab:helpPopup('matlab.graphics.chart.primitive.Line')" style="font-weight:bold">Line</a> with properties:
+
+              Color: [0 0.4470 0.7410]
+          LineStyle: '-'
+          LineWidth: 0.5000
+             Marker: 'none'
+         MarkerSize: 6
+    MarkerFaceColor: 'none'
+              XData: [0 0.0439 0.0879 0.1318 0.1758 0.2197 0.2637 0.3076 … ] (1×513 double)
+              YData: [7.2044e-31 7.6305 25.2430 18.4342 6.4465 38.3119 … ] (1×513 double)
+
+  Show <a href="matlab:if exist('ans', 'var'), matlab.graphics.internal.getForDisplay('ans', ans, 'matlab.graphics.chart.primitive.Line'), else, matlab.graphics.internal.getForDisplay('ans'), end">all properties</a>
+
+
+ans = 
+
+  <a href="matlab:helpPopup('matlab.graphics.chart.primitive.Line')" style="font-weight:bold">Line</a> with properties:
+
+              Color: [0 0.4470 0.7410]
+          LineStyle: '-'
+          LineWidth: 0.5000
+             Marker: 'none'
+         MarkerSize: 6
+    MarkerFaceColor: 'none'
+              XData: [0 0.0439 0.0879 0.1318 0.1758 0.2197 0.2637 0.3076 … ] (1×513 double)
+              YData: [1.3790e-31 84.1487 36.0392 0.4501 2.2105 8.5237 7.3212 … ] (1×513 double)
+
+  Show <a href="matlab:if exist('ans', 'var'), matlab.graphics.internal.getForDisplay('ans', ans, 'matlab.graphics.chart.primitive.Line'), else, matlab.graphics.internal.getForDisplay('ans'), end">all properties</a>
+
+
+ans = 
+
+  <a href="matlab:helpPopup('matlab.graphics.chart.primitive.Line')" style="font-weight:bold">Line</a> with properties:
+
+              Color: [0 0.4470 0.7410]
+          LineStyle: '-'
+          LineWidth: 0.5000
+             Marker: 'none'
+         MarkerSize: 6
+    MarkerFaceColor: 'none'
+              XData: [0 0.0439 0.0879 0.1318 0.1758 0.2197 0.2637 0.3076 … ] (1×513 double)
+              YData: [3.3028e-31 52.3360 207.6272 2.7277 3.0189 32.1138 … ] (1×513 double)
+
+  Show <a href="matlab:if exist('ans', 'var'), matlab.graphics.internal.getForDisplay('ans', ans, 'matlab.graphics.chart.primitive.Line'), else, matlab.graphics.internal.getForDisplay('ans'), end">all properties</a>
+
+
+ans = 
+
+  <a href="matlab:helpPopup('matlab.graphics.chart.primitive.Line')" style="font-weight:bold">Line</a> with properties:
+
+              Color: [0 0.4470 0.7410]
+          LineStyle: '-'
+          LineWidth: 0.5000
+             Marker: 'none'
+         MarkerSize: 6
+    MarkerFaceColor: 'none'
+              XData: [0 0.0439 0.0879 0.1318 0.1758 0.2197 0.2637 0.3076 … ] (1×513 double)
+              YData: [3.1269e-34 136.8262 127.3344 1.2461 199.2161 340.5653 … ] (1×513 double)
+
+  Show <a href="matlab:if exist('ans', 'var'), matlab.graphics.internal.getForDisplay('ans', ans, 'matlab.graphics.chart.primitive.Line'), else, matlab.graphics.internal.getForDisplay('ans'), end">all properties</a>
+
+
+ans = 
+
+  <a href="matlab:helpPopup('matlab.graphics.chart.primitive.Line')" style="font-weight:bold">Line</a> with properties:
+
+              Color: [0 0.4470 0.7410]
+          LineStyle: '-'
+          LineWidth: 0.5000
+             Marker: 'none'
+         MarkerSize: 6
+    MarkerFaceColor: 'none'
+              XData: [0 0.0439 0.0879 0.1318 0.1758 0.2197 0.2637 0.3076 … ] (1×513 double)
+              YData: [2.1138e-31 111.3765 595.5399 24.6173 47.3507 34.3214 … ] (1×513 double)
+
+  Show <a href="matlab:if exist('ans', 'var'), matlab.graphics.internal.getForDisplay('ans', ans, 'matlab.graphics.chart.primitive.Line'), else, matlab.graphics.internal.getForDisplay('ans'), end">all properties</a>
+
+
+ans = 
+
+  <a href="matlab:helpPopup('matlab.graphics.chart.primitive.Line')" style="font-weight:bold">Line</a> with properties:
+
+              Color: [0 0.4470 0.7410]
+          LineStyle: '-'
+          LineWidth: 0.5000
+             Marker: 'none'
+         MarkerSize: 6
+    MarkerFaceColor: 'none'
+              XData: [0 0.0439 0.0879 0.1318 0.1758 0.2197 0.2637 0.3076 … ] (1×513 double)
+              YData: [1.0159e-30 142.0244 205.3648 22.3492 0.2932 82.3918 … ] (1×513 double)
+
+  Show <a href="matlab:if exist('ans', 'var'), matlab.graphics.internal.getForDisplay('ans', ans, 'matlab.graphics.chart.primitive.Line'), else, matlab.graphics.internal.getForDisplay('ans'), end">all properties</a>
+
+
+ans = 
+
+  <a href="matlab:helpPopup('matlab.graphics.chart.primitive.Line')" style="font-weight:bold">Line</a> with properties:
+
+              Color: [0 0.4470 0.7410]
+          LineStyle: '-'
+          LineWidth: 0.5000
+             Marker: 'none'
+         MarkerSize: 6
+    MarkerFaceColor: 'none'
+              XData: [0 0.0439 0.0879 0.1318 0.1758 0.2197 0.2637 0.3076 … ] (1×513 double)
+              YData: [7.5077e-31 78.1881 168.2818 7.1618 129.3252 32.3557 … ] (1×513 double)
+
+  Show <a href="matlab:if exist('ans', 'var'), matlab.graphics.internal.getForDisplay('ans', ans, 'matlab.graphics.chart.primitive.Line'), else, matlab.graphics.internal.getForDisplay('ans'), end">all properties</a>
+
+  saved /Users/moka2804/Desktop/DSC180A/nutrient-stress-replication/fig3/outputs/step3_EOF_fig1.png
+  saved /Users/moka2804/Desktop/DSC180A/nutrient-stress-replication/fig3/outputs/step3_EOF_fig2.png
+  saved /Users/moka2804/Desktop/DSC180A/nutrient-stress-replication/fig3/outputs/step3_EOF_fig3.png
+Variance explained by EOFs 1-8 (%): [43.86 7.19 5.45 1.97 1.42 0.99 0.91 0.83]
+Step 3 done (8 s)
+
+=== Step 4: NOAA climate indices (OURS: format conversion only) ===
+ONI: CPC ONI seasonal table (ANOM column, centre month); 921 months, 1950-01 to 2026-09; range -2.04 to 2.59
+PDO: year-by-month table (missing codes |v|>=9 dropped); 2074 months, 1854-01 to 2026-10; range -4.21 to 3.84
+Saved as [value year month], the layout climate_index_comparison.m expects.
+
+=== Step 5: climate_index_comparison (unchanged) -> Fig. 3A, 3D ===
+  saved /Users/moka2804/Desktop/DSC180A/nutrient-stress-replication/fig3/outputs/step5_index_comparison_fig1.png
+  saved /Users/moka2804/Desktop/DSC180A/nutrient-stress-replication/fig3/outputs/step5_index_comparison_fig2.png
+Rows PC5..PC8 (smoothed, 30-point lowess), columns ONI, PDO:
+R =
+   -0.8369   -0.4863
+    0.3537    0.6094
+    0.0341    0.4194
+    0.0697   -0.1885
+
+P =
+    0.0000    0.0000
+    0.0000    0.0000
+    0.3075    0.0000
+    0.0369    0.0000
+
+Missing interpolated index values: ONI 0, PDO 0 (of 897)
+PC5 vs ONI: R = -0.837, P = 1.8e-236   (published |R| = 0.81, P < 1e-216; the authors plot -PC5,
+            and EOF signs are arbitrary, so compare |R|)
+PC6 vs PDO: R = +0.609, P = 2.6e-92   (published R = 0.59, P < 1e-85)
+Step 5 done (3 s)
+
+=== Step 6: which modes track ONI and PDO; smoothing sensitivity (OURS) ===
+EOF modes can swap order or sign with small data differences, so every PC is tested.
+Smoothing: code uses a 30-point lowess window; the paper's methods say 20.
+  PC   expv% |  R ONI (30/20/raw) |  R PDO (30/20/raw) |                   
+   1   43.86 | +0.00 +0.00 -0.00 | +0.00 +0.00 +0.00
+   2    7.19 | -0.02 -0.01 -0.01 | +0.01 +0.02 +0.03
+   3    5.45 | +0.13 +0.11 +0.09 | -0.07 -0.09 -0.10
+   4    1.97 | +0.55 +0.37 +0.23 | +0.58 +0.38 +0.24
+   5    1.42 | -0.84 -0.82 -0.78 | -0.49 -0.47 -0.43
+   6    0.99 | +0.35 +0.32 +0.26 | +0.61 +0.57 +0.48
+   7    0.91 | +0.03 +0.02 +0.01 | +0.42 +0.39 +0.26
+   8    0.83 | +0.07 +0.08 +0.07 | -0.19 -0.18 -0.15
+Mode most correlated with ONI: PC5 (paper: PC5). With PDO: PC6 (paper: PC6).
+With the paper's 20-point window: PC5-ONI R = -0.824 (P = 4.7e-223); PC6-PDO R = +0.572 (P = 5.2e-79)
+Time conventions: theta' time = yr + yd/365 (start of composite); index time = year + month/12.
+
+=== Step 7: Fig. 3B, 3C, 3E, 3F maps ===
+RECONSTRUCTION: 3E = mean of the yearly anomaly maps for [2007 2008 2009 2010 2011 2012 2013 2014 2020 2021];
+                3F = same for [2002 2003 2004 2005 2006 2015 2016 2017 2018 2019] (years from the caption). No script was released.
+Note: 2002 starts in July and "2021" includes the 1 Jan 2022 composite.
+  B: 2011 (La Nina)                    median +0.014, 1st-99th pct -0.39 to +0.49, beyond +/-0.8: 0.0%
+  C: 2015 (El Nino)                    median -0.004, 1st-99th pct -0.53 to +0.40, beyond +/-0.8: 0.2%
+  E: PDO cool phase (reconstruction)   median +0.010, 1st-99th pct -0.11 to +0.18, beyond +/-0.8: 0.0%
+  F: PDO warm phase (reconstruction)   median -0.010, 1st-99th pct -0.18 to +0.11, beyond +/-0.8: 0.0%
+NOTE: in our A/D figure the index is shown at the theta' time points (interpolated, as
+      correlated); the published figure plots the PDO with an extra 10-point loess for display.
+
+=== Step 8: coordinate checks (OURS) ===
+Display longitudes equal the reordered Dryad longitudes: true
+Display latitudes 40.5N..40.5S: true
+Fig. 3B 2011 anomaly: Dryad land cells empty 1.0000 (0.2127 if shifted 200 deg); landmarks correct 10/10
+EOF 5 loading map: Dryad land cells empty 1.0000 (0.2127 if shifted 200 deg); landmarks correct 10/10
+
+=== Summary ===
+                     <strong>quantity</strong>                     <strong>reproduced</strong>     <strong>published_or_expected</strong>
+    <strong>__________________________________________</strong>    <strong>___________</strong>    <strong>_____________________</strong>
+
+    {'|R| PC5 vs ONI (30-pt smoothing, code)'}         0.8369       {'0.81'      }    
+    {'P PC5 vs ONI'                          }    1.7837e-236       {'< 1e-216'  }    
+    {'|R| PC6 vs PDO (30-pt smoothing, code)'}        0.60943       {'0.59'      }    
+    {'P PC6 vs PDO'                          }     2.5827e-92       {'< 1e-85'   }    
+    {'|R| PC5 vs ONI (20-pt, paper text)'    }        0.82401       {'0.81'      }    
+    {'|R| PC6 vs PDO (20-pt, paper text)'    }         0.5718       {'0.59'      }    
+    {'Mode most correlated with ONI'         }              5       {'5'         }    
+    {'Mode most correlated with PDO'         }              6       {'6'         }    
+    {'Variance explained PC5 (%)'            }         1.4204       {'not stated'}    
+    {'Variance explained PC6 (%)'            }        0.98526       {'not stated'}    
+    {'Year levels in ANOVA'                  }             20       {'20'        }    
+    {'ANOVA cells'                           }          22468       {'20822'     }    
+    {'Fig. 3B land cells correctly empty'    }              1       {'1 expected'}    
+
+Saved fig3_summary.csv and fig3_results.mat in outputs/
+Total run time 2.8 min

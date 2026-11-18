@@ -1,0 +1,12 @@
+quantity,reproduced,published_or_expected
+Median seasonal share of variance,0.527866997485373,0.59
+Median yearly share of variance,0.0632274920941683,not stated
+ANOVA grid cells,22468,20822
+Year levels in ANOVA,21,20
+Month levels in ANOVA,12,12
+Fig. 2A median geometric-mean theta',1.67196757682061,not stated (colour scale 0-4)
+Fig. 2A land cells correctly empty,1,1 expected
+Fig. 2C land cells correctly empty,1,1 expected
+Max |anovan - independent least squares|,4.10782519111308e-14,0 expected
+Fig. 2B median nutricline (m),101.010919656887,not stated (colour scale 30-250)
+Fig. 2B cells with a value,20790,not stated

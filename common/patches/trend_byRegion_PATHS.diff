@@ -1,0 +1,36 @@
+--- authors_code/trend_byRegion_wSST.m	2026-11-04 01:15:53.519557673 -0800
++++ patched_code/trend_byRegion_wSST_PATHS.m	2026-11-17 17:13:39.733354885 -0800
+@@ -1,6 +1,6 @@
+ clear
+ close all
+-addpath(genpath('/Users/amartiny/Library/CloudStorage/GoogleDrive-amartiny@uci.edu/My Drive/NASA_NutStress/cdt'))
++addpath(genpath('cdt'))
+ 
+ T_WOD = readtable("ByRegion/Dataset S1_WOD.csv");
+ T_WOD.lon_degE = T_WOD.lon_degE+0.5;
+@@ -8,20 +8,20 @@
+ 
+ T_WOD = T_WOD(abs(T_WOD.lat_degN)< 40.6,:);
+ 
+-load('/Users/amartiny/Library/CloudStorage/GoogleDrive-amartiny@uci.edu/My Drive/NASA_NutStress/data_processed/DataLL_theta.mat');
+-load('/Users/amartiny/Library/CloudStorage/GoogleDrive-amartiny@uci.edu/My Drive/NASA_NutStress/data_processed/time.mat');
++load('DataLL_theta.mat');
++load('time.mat');
+ 
+ theta = DATAlowLat3;
+ Tsq = 365.25*trend(theta,timenum,3);
+ T = Tsq(:);
+ 
+-load('/Users/amartiny/Library/CloudStorage/GoogleDrive-amartiny@uci.edu/My Drive/NASA_NutStress/data_processed/DataLL_SST.mat');
++load('DataLL_SST.mat');
+ T_SST_sq = 365.25*trend(DATAlowLat3,timenum,3);
+ T_SST = T_SST_sq(:);
+ 
+-load('/Users/amartiny/Library/CloudStorage/GoogleDrive-amartiny@uci.edu/My Drive/NASA_NutStress/data_processed/LON2.mat');
++load('LON2.mat');
+ LON = LON2;
+-load('/Users/amartiny/Library/CloudStorage/GoogleDrive-amartiny@uci.edu/My Drive/NASA_NutStress/data_processed/LAT.mat');
++load('LAT.mat');
+ LAT = LAT(50:131);
+ 
+ %%
